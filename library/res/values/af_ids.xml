@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="bottomBar" />
+    <item type="id" name="titleBar" />
+    <!-- copy from https://github.com/TUBB/SwipeMenuRecyclerView -->
+    <item name="smContentView" type="id"/>
+    <item name="smMenuView" type="id"/>
+</resources>
