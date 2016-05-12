@@ -2,7 +2,7 @@
 
 =======
 高仿头条新闻客户端
-![image]https://raw.githubusercontent.com/HarryXR/SimpleNews/master/screenshot/dra.png
+![image](https://raw.githubusercontent.com/HarryXR/SimpleNews/master/screenshot/dra.png)
 1.使用Volley,Glide,Gson
 
 2.常用的Layout :FlowLayout;CheckableLayout...
