@@ -1,4 +1,5 @@
 # SimpleNews
+<<<<<<< HEAD
 基于Material Design和MVP的新闻客户端
 
 # Screenshot
@@ -35,3 +36,11 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+=======
+高仿头条新闻客户端
+
+1.使用Volley,Glide,Gson
+
+2.常用的Layout :FlowLayout;CheckableLayout...
+
+>>>>>>> 823108cb47985199697032ad8e299cca33b8b448
