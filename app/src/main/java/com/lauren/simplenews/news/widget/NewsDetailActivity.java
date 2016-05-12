@@ -59,12 +59,12 @@ public class NewsDetailActivity extends SwipeBackActivity implements NewsDetailV
         mNews = (NewsBean) getIntent().getSerializableExtra("news");
 
         CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collapsingToolbar.setTitle(mNews.getTitle());
+        collapsingToolbar.setTitle(mNews.title);
 
-        ImageLoaderUtils.display(getApplicationContext(), (ImageView) findViewById(R.id.ivImage), mNews.getImgsrc());
+        ImageLoaderUtils.display(getApplicationContext(), (ImageView) findViewById(R.id.ivImage), mNews.imgsrc);
 
         mNewsDetailPresenter = new NewsDetailPresenterImpl(getApplication(), this);
-        mNewsDetailPresenter.loadNewsDetail(mNews.getDocid());
+        mNewsDetailPresenter.loadNewsDetail(mNews.docid);
     }
 
     @Override

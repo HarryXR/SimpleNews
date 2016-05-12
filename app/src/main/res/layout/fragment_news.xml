@@ -8,11 +8,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-        <android.support.design.widget.TabLayout
+
+        <com.lauren.simplenews.view.PagerSlidingTabStrip
             android:id="@+id/tab_layout"
+            style="@style/tab_sliding"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:tabIndicatorColor="@color/icons"/>
+            android:layout_height="48dp"
+            android:clipToPadding="false"
+            android:paddingLeft="0dip"
+            android:fadingEdge="horizontal"
+            android:paddingRight="0dip"
+            android:textColor="@color/black_f7f7f7"
+            android:textSize="18sp"/>
     </android.support.design.widget.AppBarLayout>
 
 

@@ -36,4 +36,11 @@
         <item name="android:textColor">@color/icons</item>
     </style>
 
+    <style name="tab_sliding">
+        <!--<item name="pstsOneScreenTabs">4</item>-->
+        <item name="pstsSelectedTextColor">@color/white</item>
+        <item name="pstsIndicatorColor">@color/white</item>
+        <item name="pstsIndicatorHeight">2dp</item>
+        <item name="pstsDividerColor">@android:color/transparent</item>
+    </style>
 </resources>

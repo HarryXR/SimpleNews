@@ -78,11 +78,11 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             if(news == null) {
                 return;
             }
-            ((ItemViewHolder) holder).mTitle.setText(news.getTitle());
-            ((ItemViewHolder) holder).mDesc.setText(news.getDigest());
+            ((ItemViewHolder) holder).mTitle.setText(news.title);
+            ((ItemViewHolder) holder).mDesc.setText(news.digest);
 //            Uri uri = Uri.parse(news.getImgsrc());
 //            ((ItemViewHolder) holder).mNewsImg.setImageURI(uri);
-            ImageLoaderUtils.display(mContext, ((ItemViewHolder) holder).mNewsImg, news.getImgsrc());
+            ImageLoaderUtils.display(mContext, ((ItemViewHolder) holder).mNewsImg, news.imgsrc);
         }
     }
 

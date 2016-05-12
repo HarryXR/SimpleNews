@@ -12,9 +12,10 @@
         android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <include
-            android:id="@+id/appbar"
-            layout="@layout/toolbar" />
+        <!--<include-->
+            <!--android:id="@+id/appbar"-->
+            <!--layout="@layout/toolbar"-->
+            <!--/>-->
 
 
         <FrameLayout
@@ -34,6 +35,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/navigation_header"
-        app:menu="@menu/navigation_menu" />
+        app:menu="@menu/navigation_menu"
+        android:visibility="gone"/>
 
 </android.support.v4.widget.DrawerLayout>
