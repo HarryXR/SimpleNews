@@ -1,16 +1,17 @@
 package com.lauren.simplenews.news.widget;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.lauren.simplenews.R;
+import com.lauren.simplenews.adapter.AfFragmentPagerAdapter;
 import com.lauren.simplenews.view.PagerSlidingTabStrip;
 
 import java.util.ArrayList;
@@ -40,22 +41,21 @@ public class NewsFragment extends Fragment {
         mViewPager = (ViewPager) view.findViewById(R.id.viewpager);
         mViewPager.setOffscreenPageLimit(7);
         setupViewPager(mViewPager);
-//        mTablayout.addTab(mTablayout.newTab().setText(R.string.top));
-//        mTablayout.addTab(mTablayout.newTab().setText(R.string.nba));
-//        mTablayout.addTab(mTablayout.newTab().setText(R.string.cars));
-//        mTablayout.addTab(mTablayout.newTab().setText(R.string.jokes));
-//        mTablayout.addTab(mTablayout.newTab().setText(R.string.top));
-//        mTablayout.addTab(mTablayout.newTab().setText(R.string.nba));
-//        mTablayout.addTab(mTablayout.newTab().setText(R.string.cars));
-//        mTablayout.addTab(mTablayout.newTab().setText(R.string.jokes));
-//        mTablayout.setupWithViewPager(mViewPager);
         mTablayout.setViewPager(mViewPager);
         return view;
     }
 
     private void setupViewPager(ViewPager mViewPager) {
         //Fragment中嵌套使用Fragment一定要使用getChildFragmentManager(),否则会有问题
-        MyPagerAdapter adapter = new MyPagerAdapter(getChildFragmentManager());
+        FragmentManager fragmentManager;
+        if (Build.VERSION.SDK_INT >= 17) {
+            fragmentManager = getChildFragmentManager();
+        }
+        else {
+            fragmentManager = getFragmentManager();
+        }
+
+        MyPagerAdapter adapter = new MyPagerAdapter(fragmentManager);
         adapter.addFragment(NewsListFragment.newInstance(NEWS_TYPE_TOP), getString(R.string.top));
         adapter.addFragment(NewsListFragment.newInstance(NEWS_TYPE_NBA), getString(R.string.nba));
         adapter.addFragment(NewsListFragment.newInstance(NEWS_TYPE_CARS), getString(R.string.cars));
@@ -67,7 +67,7 @@ public class NewsFragment extends Fragment {
         mViewPager.setAdapter(adapter);
     }
 
-    public static class MyPagerAdapter extends FragmentPagerAdapter {
+    public static class MyPagerAdapter extends AfFragmentPagerAdapter {
         private final List<Fragment> mFragments = new ArrayList<>();
         private final List<String> mFragmentTitles = new ArrayList<>();
 
@@ -94,5 +94,9 @@ public class NewsFragment extends Fragment {
         public CharSequence getPageTitle(int position) {
             return mFragmentTitles.get(position);
         }
+    }
+
+    protected CharSequence getTitle(){
+        return getClass().getSimpleName();
     }
 }

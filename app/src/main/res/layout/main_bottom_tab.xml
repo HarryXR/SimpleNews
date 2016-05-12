@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.lauren.simplenews.view.MainBottomTab
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:gravity="center_vertical"
+    android:paddingTop="10dp"
+    android:minHeight="48dp"
+    android:orientation="horizontal">
+
+    <com.lauren.simplenews.view.RadioBadgeView
+        android:id="@+id/radio_btn_home"
+        style="@style/rb_tab_main"
+        android:checked="true"
+        android:drawableTop="@drawable/bottom_order_selector"
+        android:text="首页"
+        />
+
+    <com.lauren.simplenews.view.RadioBadgeView
+        android:id="@+id/radio_btn_order"
+        style="@style/rb_tab_main"
+        android:drawableTop="@drawable/bottom_order_selector"
+        android:text="视频"/>
+
+    <com.lauren.simplenews.view.RadioBadgeView
+        android:id="@+id/radio_btn_customer"
+        style="@style/rb_tab_main"
+        android:checked="false"
+        android:drawableTop="@drawable/bottom_order_selector"
+        android:text="话题"/>
+
+    <com.lauren.simplenews.view.RadioBadgeView
+        android:id="@+id/radio_btn_user"
+        style="@style/rb_tab_main"
+        android:drawableTop="@drawable/bottom_order_selector"
+        android:text="我的"/>
+</com.lauren.simplenews.view.MainBottomTab>

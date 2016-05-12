@@ -48,9 +48,9 @@ public class WeatherPresenterImpl implements WeatherPresenter, WeatherModelImpl.
 
             @Override
             public void onFailure(String msg, Exception e) {
-                mWeatherView.showErrorToast("定位失败");
-                mWeatherView.setCity("深圳");
-                mWeatherModel.loadWeatherData("深圳", WeatherPresenterImpl.this);
+//                mWeatherView.showErrorToast("定位失败");
+                mWeatherView.setCity("南京");
+                mWeatherModel.loadWeatherData("南京", WeatherPresenterImpl.this);
             }
         };
         //获取定位信息

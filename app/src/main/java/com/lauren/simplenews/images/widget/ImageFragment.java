@@ -3,7 +3,7 @@ package com.lauren.simplenews.images.widget;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -39,6 +39,10 @@ public class ImageFragment extends Fragment implements ImageView, SwipeRefreshLa
     private ImageAdapter mAdapter;
     private List<ImageBean> mData;
     private ImagePresenter mImagePresenter;
+
+    protected CharSequence getTitle(){
+        return getClass().getSimpleName();
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
