@@ -40,4 +40,6 @@ public class NewsBean implements Serializable {
      */
     private String tag;
 
+    public String url;
+
 }

@@ -1,12 +1,9 @@
 package com.lauren.simplenews.news.widget;
 
-import android.content.Intent;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -69,12 +66,11 @@ public class NewsListFragment extends Fragment implements NewsView, SwipeRefresh
         View view = inflater.inflate(R.layout.fragment_newslist, null);
 
         mSwipeRefreshWidget = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_widget);
-        mSwipeRefreshWidget.setColorSchemeResources(R.color.primary,
-                R.color.primary_dark, R.color.primary_light,
-                R.color.accent);
+        mSwipeRefreshWidget.setColorSchemeResources(R.color.primary, R.color.primary_dark, R.color.primary_light,
+            R.color.accent);
         mSwipeRefreshWidget.setOnRefreshListener(this);
 
-        mRecyclerView = (RecyclerView)view.findViewById(R.id.recycle_view);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recycle_view);
         mRecyclerView.setHasFixedSize(true);
 
         mLayoutManager = new LinearLayoutManager(getActivity());
@@ -102,9 +98,8 @@ public class NewsListFragment extends Fragment implements NewsView, SwipeRefresh
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);
-            if (newState == RecyclerView.SCROLL_STATE_IDLE
-                    && lastVisibleItem + 1 == mAdapter.getItemCount()
-                    && mAdapter.isShowFooter()) {
+            if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == mAdapter.getItemCount() && mAdapter
+                .isShowFooter()) {
                 //加载更多
                 LogUtils.d(TAG, "loading more data");
                 mNewsPresenter.loadNews(mType, pageIndex + Urls.PAZE_SIZE);
@@ -116,15 +111,16 @@ public class NewsListFragment extends Fragment implements NewsView, SwipeRefresh
         @Override
         public void onItemClick(View view, int position) {
             NewsBean news = mAdapter.getItem(position);
-            Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
-            intent.putExtra("news", news);
-
-            View transitionView = view.findViewById(R.id.ivNews);
-            ActivityOptionsCompat options =
-                    ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
-                            transitionView, getString(R.string.transition_news_img));
-
-            ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
+//            Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
+//            intent.putExtra("news", news);
+//
+//            View transitionView = view.findViewById(R.id.ivNews);
+//            ActivityOptionsCompat options =
+//                    ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
+//                            transitionView, getString(R.string.transition_news_img));
+//
+//            ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
+            H5Activity.forward(getActivity(), news.url, news.title);
         }
     };
 
@@ -136,22 +132,22 @@ public class NewsListFragment extends Fragment implements NewsView, SwipeRefresh
     @Override
     public void addNews(List<NewsBean> newsList) {
         mAdapter.isShowFooter(true);
-        if(mData == null) {
+        if (mData == null) {
             mData = new ArrayList<>();
         }
         mData.addAll(newsList);
-        if(pageIndex == 0) {
+        if (pageIndex == 0) {
             mAdapter.setmDate(mData);
-        } else {
+        }
+        else {
             //如果没有更多数据了,则隐藏footer布局
-            if(newsList == null || newsList.size() == 0) {
+            if (newsList == null || newsList.size() == 0) {
                 mAdapter.isShowFooter(false);
             }
             mAdapter.notifyDataSetChanged();
         }
         pageIndex += Urls.PAZE_SIZE;
     }
-
 
     @Override
     public void hideProgress() {
@@ -160,21 +156,21 @@ public class NewsListFragment extends Fragment implements NewsView, SwipeRefresh
 
     @Override
     public void showLoadFailMsg() {
-        if(pageIndex == 0) {
+        if (pageIndex == 0) {
             mAdapter.isShowFooter(false);
             mAdapter.notifyDataSetChanged();
         }
-        View view = getActivity() == null ? mRecyclerView.getRootView() : getActivity().findViewById(R.id.drawer_layout);
+        View view = getActivity() == null ? mRecyclerView.getRootView() : getActivity().findViewById(
+            R.id.drawer_layout);
         Snackbar.make(view, getString(R.string.load_fail), Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
     public void onRefresh() {
         pageIndex = 0;
-        if(mData != null) {
+        if (mData != null) {
             mData.clear();
         }
         mNewsPresenter.loadNews(mType, pageIndex);
     }
-
 }
