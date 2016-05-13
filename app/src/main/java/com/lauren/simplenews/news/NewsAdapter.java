@@ -5,12 +5,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lauren.simplenews.R;
 import com.lauren.simplenews.beans.NewsBean;
-import com.lauren.simplenews.utils.ImageLoaderUtils;
+import com.lauren.simplenews.view.GlideImageView;
 
 import java.util.List;
 
@@ -43,53 +42,50 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public int getItemViewType(int position) {
         // 最后一个item设置为footerView
-        if(!mShowFooter) {
+        if (!mShowFooter) {
             return TYPE_ITEM;
         }
         if (position + 1 == getItemCount()) {
             return TYPE_FOOTER;
-        } else {
+        }
+        else {
             return TYPE_ITEM;
         }
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                      int viewType) {
-        if(viewType == TYPE_ITEM) {
-            View v = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.item_news, parent, false);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (viewType == TYPE_ITEM) {
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news, parent, false);
             ItemViewHolder vh = new ItemViewHolder(v);
             return vh;
-        } else {
-            View view = LayoutInflater.from(parent.getContext()).inflate(
-                    R.layout.footer, null);
-            view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT));
+        }
+        else {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.footer, null);
+            view.setLayoutParams(
+                new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             return new FooterViewHolder(view);
         }
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if(holder instanceof ItemViewHolder) {
+        if (holder instanceof ItemViewHolder) {
 
             NewsBean news = mData.get(position);
-            if(news == null) {
+            if (news == null) {
                 return;
             }
             ((ItemViewHolder) holder).mTitle.setText(news.title);
             ((ItemViewHolder) holder).mDesc.setText(news.digest);
-//            Uri uri = Uri.parse(news.getImgsrc());
-//            ((ItemViewHolder) holder).mNewsImg.setImageURI(uri);
-            ImageLoaderUtils.display(mContext, ((ItemViewHolder) holder).mNewsImg, news.imgsrc);
+            ((ItemViewHolder) holder).mNewsImg.setImageURL(news.imgsrc);
         }
     }
 
     @Override
     public int getItemCount() {
-        int begin = mShowFooter?1:0;
-        if(mData == null) {
+        int begin = mShowFooter ? 1 : 0;
+        if (mData == null) {
             return begin;
         }
         return mData.size() + begin;
@@ -116,7 +112,6 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         public FooterViewHolder(View view) {
             super(view);
         }
-
     }
 
     public interface OnItemClickListener {
@@ -127,22 +122,21 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         public TextView mTitle;
         public TextView mDesc;
-        public ImageView mNewsImg;
+        public GlideImageView mNewsImg;
 
         public ItemViewHolder(View v) {
             super(v);
             mTitle = (TextView) v.findViewById(R.id.tvTitle);
             mDesc = (TextView) v.findViewById(R.id.tvDesc);
-            mNewsImg = (ImageView) v.findViewById(R.id.ivNews);
+            mNewsImg = (GlideImageView) v.findViewById(R.id.ivNews);
             v.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            if(mOnItemClickListener != null) {
+            if (mOnItemClickListener != null) {
                 mOnItemClickListener.onItemClick(view, this.getPosition());
             }
         }
     }
-
 }

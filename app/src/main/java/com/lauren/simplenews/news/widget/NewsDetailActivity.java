@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.lauren.simplenews.R;
@@ -13,7 +12,7 @@ import com.lauren.simplenews.news.presenter.NewsDetailPresenter;
 import com.lauren.simplenews.news.presenter.NewsDetailPresenterImpl;
 import com.lauren.simplenews.news.view.NewsDetailView;
 import com.lauren.simplenews.utils.ToolsUtil;
-import com.lauren.simplenews.utils.ImageLoaderUtils;
+import com.lauren.simplenews.view.GlideImageView;
 
 import org.sufficientlysecure.htmltextview.HtmlTextView;
 
@@ -61,7 +60,7 @@ public class NewsDetailActivity extends SwipeBackActivity implements NewsDetailV
         CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle(mNews.title);
 
-        ImageLoaderUtils.display(getApplicationContext(), (ImageView) findViewById(R.id.ivImage), mNews.imgsrc);
+        ((GlideImageView) findViewById(R.id.ivImage)).setImageURL(mNews.imgsrc);
 
         mNewsDetailPresenter = new NewsDetailPresenterImpl(getApplication(), this);
         mNewsDetailPresenter.loadNewsDetail(mNews.docid);

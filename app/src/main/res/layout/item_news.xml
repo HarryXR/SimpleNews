@@ -15,7 +15,7 @@
         android:orientation="horizontal"
         android:padding="12dp">
 
-        <ImageView
+        <com.lauren.simplenews.view.GlideImageView
             android:id="@+id/ivNews"
             android:layout_width="86dp"
             android:layout_height="60dp"
