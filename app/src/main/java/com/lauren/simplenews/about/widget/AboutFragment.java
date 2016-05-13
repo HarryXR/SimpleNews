@@ -11,10 +11,8 @@ import com.lauren.simplenews.R;
 
 /**
  * Description :
- * Author : lauren
- * Email  : lauren.liuling@gmail.com
- * Blog   : http://www.liuling123.com
- * Date   : 15/12/13
+ * Author : Harry
+ * Blog   : https://github.com/HarryXR
  */
 public class AboutFragment extends Fragment {
 
